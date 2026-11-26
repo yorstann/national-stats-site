@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Statistik Nasional — Indonesia dalam Angka</title>
+<meta name="description" content="Penduduk, ekonomi, dan daerah Indonesia — diringkas dari publikasi resmi BPS dan Bank Indonesia. Data per Desember 2025.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#ringkasan">
+      <span class="brand-mark" aria-hidden="true"><span class="bar b1"></span><span class="bar b2"></span><span class="bar b3"></span></span>
+      <span class="brand-text"><strong>Statistik Nasional</strong><small>Indonesia dalam Angka</small></span>
+    </a>
+    <nav class="site-nav" aria-label="Navigasi utama">
+      <a href="#ringkasan" data-nav="ringkasan" class="active">Ringkasan</a>
+      <a href="#grafik" data-nav="grafik">Grafik</a>
+      <a href="#provinsi" data-nav="provinsi">Provinsi</a>
+    </nav>
+    <span class="header-date">Data per Des 2025</span>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="ringkasan" class="intro" data-shot-section="overview">
+    <div class="intro-text">
+      <h1>Indonesia dalam Angka</h1>
+      <p>Penduduk, ekonomi, dan daerah — diringkas dari publikasi resmi. Data per Desember 2025.</p>
+    </div>
+    <p class="intro-source">Sumber utama: <strong>BPS</strong> · Bank Indonesia<br>Angka dibulatkan; estimasi ditandai.</p>
+  </section>
+
+  <section class="kpi-grid" id="kpiGrid" aria-label="Indikator utama" data-shot-section="overview"></section>
+
+  <section id="grafik" class="charts" data-shot-section="charts">
+    <div class="card chart-card">
+      <div class="card-head">
+        <h2>Pertumbuhan PDB 2016–2025</h2>
+        <span class="pill">BPS</span>
+      </div>
+      <div class="toggle" role="group" aria-label="Pilih seri grafik">
+        <button type="button" id="btnPdb" class="toggle-btn active" aria-pressed="true">Pertumbuhan PDB</button>
+        <button type="button" id="btnInflasi" class="toggle-btn" aria-pressed="false">Inflasi</button>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="growthChart" width="860" height="360" aria-label="Grafik garis pertumbuhan PDB dan inflasi 2016 sampai 2025"></canvas>
+        <div id="chartTip" class="tooltip" hidden></div>
+      </div>
+      <p class="card-note">BPS; 2025 estimasi. Arahkan kursor ke grafik untuk melihat nilai per tahun. Titik berongga = estimasi.</p>
+    </div>
+
+    <div class="card chart-card">
+      <div class="card-head">
+        <h2>PDB menurut Lapangan Usaha</h2>
+        <span class="pill">2024 · %</span>
+      </div>
+      <div id="sectorBars" class="bars" role="list" aria-label="Pangsa PDB menurut lapangan usaha"></div>
+      <p class="card-note">Industri pengolahan tetap penyumbang terbesar, diikuti perdagangan dan pertanian.</p>
+    </div>
+
+    <div class="card chart-card">
+      <div class="card-head">
+        <h2>Penduduk menurut Pulau</h2>
+        <span class="pill">juta jiwa · estimasi</span>
+      </div>
+      <div id="islandBars" class="bars bars-teal" role="list" aria-label="Penduduk menurut pulau"></div>
+      <p class="card-note">Lebih dari separuh penduduk Indonesia tinggal di Pulau Jawa.</p>
+    </div>
+  </section>
+
+  <section id="provinsi" class="card table-card" data-shot-section="table">
+    <div class="card-head table-head">
+      <h2>Provinsi di Indonesia</h2>
+      <label class="search-box">
+        <span class="visually-hidden">Cari provinsi</span>
+        <input type="search" id="provSearch" placeholder="Cari provinsi…" autocomplete="off">
+      </label>
+    </div>
+    <p class="card-note">Klik baris untuk melihat detail provinsi. Klik judul kolom untuk mengurutkan. <span id="rowCount"></span> Angka dibulatkan; provinsi adalah estimasi.</p>
+    <div class="table-scroll">
+      <table id="provTable">
+        <thead><tr id="provHead"></tr></thead>
+        <tbody id="provBody"></tbody>
+      </table>
+    </div>
+    <p class="card-note table-source">Sumber: BPS, estimasi. Angka provinsi dibulatkan.</p>
+  </section>
+
+  <footer class="site-footer">
+    <p><strong>Statistik Nasional — Indonesia dalam Angka.</strong> Ringkasan visual untuk keperluan edukasi; angka resmi mengacu pada publikasi BPS dan Bank Indonesia.</p>
+    <p>Sumber data: BPS (Badan Pusat Statistik) · Bank Indonesia. Angka 2025 dan angka provinsi adalah estimasi.</p>
+  </footer>
+</main>
+
+<div id="modalBackdrop" class="modal-backdrop" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button type="button" id="modalClose" class="modal-close" aria-label="Tutup">×</button>
+    <h3 id="modalTitle"></h3>
+    <p id="modalCapital" class="modal-capital"></p>
+    <dl id="modalFacts" class="modal-facts"></dl>
+    <p id="modalNote" class="card-note"></p>
+  </div>
+</div>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>
