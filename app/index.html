@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Statistik Nasional — Indonesia dalam Angka</title>
-<meta name="description" content="Penduduk, ekonomi, dan daerah Indonesia — diringkas dari publikasi resmi BPS dan Bank Indonesia. Data per Desember 2025.">
+<meta name="description" content="Penduduk, ekonomi, perdagangan, dan daerah Indonesia — diringkas dari publikasi resmi BPS dan Bank Indonesia. Data per Desember 2025.">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -17,6 +17,7 @@
     <nav class="site-nav" aria-label="Navigasi utama">
       <a href="#ringkasan" data-nav="ringkasan" class="active">Ringkasan</a>
       <a href="#grafik" data-nav="grafik">Grafik</a>
+      <a href="#ekonomi" data-nav="ekonomi">Ekonomi</a>
       <a href="#provinsi" data-nav="provinsi">Provinsi</a>
     </nav>
     <span class="header-date">Data per Des 2025</span>
@@ -33,6 +34,16 @@
   </section>
 
   <section class="kpi-grid" id="kpiGrid" aria-label="Indikator utama" data-shot-section="overview"></section>
+
+  <section class="highlights" aria-label="Sorotan utama" data-shot-section="overview">
+    <div class="section-head">
+      <h2>Sorotan</h2>
+      <span class="pill">Tiga angka yang perlu diketahui</span>
+    </div>
+    <div class="highlight-grid" id="highlightGrid"></div>
+  </section>
+
+  <section class="quick-facts" id="quickFacts" aria-label="Sekilas daerah" data-shot-section="overview"></section>
 
   <section id="grafik" class="charts" data-shot-section="charts">
     <div class="card chart-card">
@@ -70,6 +81,68 @@
     </div>
   </section>
 
+  <section id="ekonomi" class="economy" data-shot-section="economy">
+    <div class="section-head">
+      <h2>Ekonomi &amp; Perdagangan</h2>
+      <span class="pill">BPS · Bank Indonesia</span>
+    </div>
+    <div class="economy-grid">
+      <div class="card chart-card">
+        <div class="card-head">
+          <h2>Ekspor &amp; Impor 2020–2025</h2>
+          <span class="pill">US$ miliar</span>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="tradeChart" width="860" height="360" aria-label="Grafik batang ekspor dan impor 2020 sampai 2025"></canvas>
+        </div>
+        <p class="card-note">BPS · Bank Indonesia; 2025 estimasi. Biru = ekspor, teal = impor. Surplus perdagangan berlanjut sejak 2020.</p>
+        <div class="facts-row" id="monetaryFacts"></div>
+      </div>
+
+      <div class="card chart-card">
+        <div class="card-head">
+          <h2>Tren Sosial 2016–2025</h2>
+          <span class="pill">BPS</span>
+        </div>
+        <div class="toggle" role="group" aria-label="Pilih seri tren sosial">
+          <button type="button" id="btnUnemp" class="toggle-btn active" aria-pressed="true">Pengangguran</button>
+          <button type="button" id="btnPoverty" class="toggle-btn" aria-pressed="false">Kemiskinan</button>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="trendChart" width="860" height="360" aria-label="Grafik garis pengangguran dan kemiskinan 2016 sampai 2025"></canvas>
+          <div id="trendTip" class="tooltip" hidden></div>
+        </div>
+        <p class="card-note">BPS; 2025 estimasi. Pengangguran melonjak saat pandemi 2020 lalu pulih; kemiskinan turun ke level terendah pada 2025.</p>
+      </div>
+
+      <div class="card chart-card">
+        <div class="card-head">
+          <h2>Struktur Umur Penduduk</h2>
+          <span class="pill">2024 · %</span>
+        </div>
+        <div id="ageBars" class="bars bars-teal" role="list" aria-label="Penduduk menurut kelompok umur"></div>
+        <p class="card-note">69% penduduk berada di usia produktif — bonus demografi. 58,6% tinggal di perkotaan.</p>
+      </div>
+
+      <div class="card chart-card compare-card">
+        <div class="card-head">
+          <h2>Bandingkan Provinsi</h2>
+          <span class="pill">38 provinsi</span>
+        </div>
+        <div class="compare-pickers">
+          <label>Provinsi pertama
+            <select id="cmpA"></select>
+          </label>
+          <label>Provinsi kedua
+            <select id="cmpB"></select>
+          </label>
+        </div>
+        <div id="cmpResult" class="cmp-result"></div>
+        <p class="card-note" id="cmpVerdict"></p>
+      </div>
+    </div>
+  </section>
+
   <section id="provinsi" class="card table-card" data-shot-section="table">
     <div class="card-head table-head">
       <h2>Provinsi di Indonesia</h2>
@@ -85,12 +158,12 @@
         <tbody id="provBody"></tbody>
       </table>
     </div>
-    <p class="card-note table-source">Sumber: BPS, estimasi. Angka provinsi dibulatkan.</p>
+    <p class="card-note table-source">Sumber: BPS, estimasi. Angka provinsi dibulatkan; IPM 2024.</p>
   </section>
 
   <footer class="site-footer">
     <p><strong>Statistik Nasional — Indonesia dalam Angka.</strong> Ringkasan visual untuk keperluan edukasi; angka resmi mengacu pada publikasi BPS dan Bank Indonesia.</p>
-    <p>Sumber data: BPS (Badan Pusat Statistik) · Bank Indonesia. Angka 2025 dan angka provinsi adalah estimasi.</p>
+    <p>Sumber data: BPS (Badan Pusat Statistik) · Bank Indonesia. Angka 2025 dan angka provinsi adalah estimasi. Tabel memuat seluruh 38 provinsi.</p>
   </footer>
 </main>
 

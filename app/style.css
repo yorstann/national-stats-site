@@ -61,7 +61,7 @@ body {
 .intro-source { text-align: right; font-size: 13px; color: var(--muted); margin: 0; }
 
 .kpi-grid {
-  display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
   margin-bottom: 18px;
 }
 .kpi {
@@ -73,6 +73,52 @@ body {
 .kpi-sub { font-size: 13px; color: #4b5563; }
 .kpi-change { font-size: 13px; margin-top: 4px; color: var(--green); font-weight: 600; }
 .kpi-change .src { color: var(--muted); font-weight: 400; }
+
+/* ---------- Sorotan & sekilas daerah ---------- */
+.section-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 12px; }
+.section-head h2 { margin: 0; font-size: 19px; }
+.highlights { margin-bottom: 18px; }
+.highlight-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.highlight {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 16px 18px;
+}
+.highlight h3 { margin: 0 0 6px; font-size: 16.5px; color: var(--navy); }
+.highlight p { margin: 0; font-size: 14px; color: #374151; }
+.highlight .highlight-src { margin-top: 8px; font-size: 12.5px; color: var(--muted); }
+.quick-facts {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px;
+  margin-bottom: 18px;
+}
+.fact {
+  background: var(--navy); color: #fff;
+  border-radius: var(--radius); padding: 12px 14px;
+  display: flex; flex-direction: column; gap: 1px;
+}
+.fact-label { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: #c7d2fe; font-weight: 700; }
+.fact strong { font-size: 14.5px; }
+.fact-value { font-size: 17px; font-weight: 800; color: #fde68a; }
+.facts-row { display: flex; gap: 12px; margin-top: 14px; }
+.facts-row .fact { flex: 1; background: #f8fafc; border: 1px solid var(--line); color: var(--ink); }
+.facts-row .fact-label { color: var(--muted); }
+.facts-row .fact-value { color: var(--blue); font-size: 19px; }
+
+/* ---------- Ekonomi ---------- */
+.economy { margin-bottom: 18px; }
+.economy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.economy-grid .chart-card:first-child { grid-column: 1 / -1; }
+.compare-card { grid-column: 1 / -1; }
+.compare-pickers { display: flex; gap: 14px; margin: 14px 0 6px; flex-wrap: wrap; }
+.compare-pickers label { font-size: 13px; font-weight: 600; color: var(--muted); display: flex; flex-direction: column; gap: 5px; }
+.compare-pickers select {
+  font: inherit; font-size: 14.5px; padding: 9px 12px;
+  border: 1px solid var(--line); border-radius: 9px; background: #fff; min-width: 220px;
+}
+.cmp-result { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
+.cmp-metric { border-top: 1px solid var(--line); padding-top: 10px; }
+.cmp-label { font-size: 12.5px; font-weight: 700; color: var(--muted); margin-bottom: 6px; }
+.cmp-row { display: grid; grid-template-columns: 150px 1fr 110px; align-items: center; gap: 10px; margin-top: 4px; }
+.cmp-name { font-size: 13.5px; font-weight: 600; text-align: right; }
 
 /* ---------- Cards & charts ---------- */
 .charts {
@@ -189,6 +235,9 @@ td .prov-cap { font-size: 12.5px; color: var(--muted); display: block; }
    with tighter row padding so the card ends cleanly. */
 body[data-shot="charts"] #ringkasan,
 body[data-shot="charts"] .kpi-grid,
+body[data-shot="charts"] .highlights,
+body[data-shot="charts"] .quick-facts,
+body[data-shot="charts"] #ekonomi,
 body[data-shot="charts"] #provinsi,
 body[data-shot="charts"] .site-footer { display: none; }
 body[data-shot="charts"] main { padding-top: 12px; }
@@ -202,14 +251,27 @@ body[data-shot="charts"] .bar-row .bar-name { font-size: 12.5px; line-height: 1.
 body[data-shot="charts"] .bar-row .bar-val { font-size: 12.5px; }
 body[data-shot="table"] #ringkasan,
 body[data-shot="table"] .kpi-grid,
+body[data-shot="table"] .highlights,
+body[data-shot="table"] .quick-facts,
 body[data-shot="table"] #grafik,
+body[data-shot="table"] #ekonomi,
 body[data-shot="table"] .site-footer { display: none; }
 body[data-shot="table"] main { padding-top: 12px; }
 body[data-shot="table"] .card { padding: 16px 20px; }
 body[data-shot="table"] th, body[data-shot="table"] td { padding: 7px 10px; }
 body[data-shot="overview"] #grafik,
+body[data-shot="overview"] #ekonomi,
 body[data-shot="overview"] #provinsi,
 body[data-shot="overview"] .site-footer { display: none; }
+/* Tampilan ringkasan dipadatkan supaya KPI, sorotan, dan sekilas daerah
+   muat penuh dalam viewport 720px tanpa ruang kosong di bawah. */
+body[data-shot="overview"] .intro { padding: 16px 0 12px; }
+body[data-shot="overview"] .intro h1 { font-size: 28px; }
+body[data-shot="overview"] .kpi { padding: 11px 14px 10px; }
+body[data-shot="overview"] .kpi-value { font-size: 23px; }
+body[data-shot="overview"] .highlights { margin-bottom: 12px; }
+body[data-shot="overview"] .highlight { padding: 13px 15px; }
+body[data-shot="overview"] .quick-facts { margin-bottom: 0; }
 
 /* ---------- Phone ---------- */
 @media (max-width: 900px) {
@@ -228,6 +290,12 @@ body[data-shot="overview"] .site-footer { display: none; }
   .intro-source { text-align: left; }
   .kpi-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .kpi-value { font-size: 22px; }
+  .highlight-grid { grid-template-columns: 1fr; }
+  .quick-facts { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .economy-grid { grid-template-columns: 1fr; }
+  .cmp-row { grid-template-columns: 104px 1fr 84px; gap: 6px; }
+  .cmp-name { font-size: 12px; }
+  .compare-pickers select { min-width: 0; width: 100%; }
   .card { padding: 16px; }
   .bar-row { grid-template-columns: 132px 1fr 44px; gap: 8px; }
   .bar-row .bar-name { font-size: 12px; }

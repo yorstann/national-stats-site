@@ -73,6 +73,26 @@ export const KPI = [
     source: "BPS (estimasi)",
     note: "PDB per kapita 2024",
   },
+  {
+    id: "ekspor",
+    label: "Ekspor 2024",
+    value: "US$264,7 M",
+    sub: "miliar dolar AS",
+    change: "+2,2% yoy",
+    changeDir: "up",
+    source: "BPS",
+    note: "Surplus perdagangan berlanjut",
+  },
+  {
+    id: "ipm",
+    label: "IPM 2024",
+    value: "75,0",
+    sub: "Indeks Pembangunan Manusia",
+    change: "+0,6 poin",
+    changeDir: "up",
+    source: "BPS",
+    note: "Kategori tinggi",
+  },
 ];
 
 // Pertumbuhan PDB (riil, % yoy) dan inflasi (IHK, % yoy). 2025 = estimasi.
@@ -81,6 +101,24 @@ export const GROWTH = {
   years: [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025],
   pdb: [5.0, 5.1, 5.2, 5.0, -2.07, 3.7, 5.3, 5.1, 5.0, 5.1],
   inflasi: [3.0, 3.6, 3.1, 2.7, 1.7, 1.9, 5.5, 2.6, 1.6, 1.6],
+  estimateYears: [2025],
+};
+
+// Tren sosial 2016–2025: pengangguran/TPT (%) dan kemiskinan (%). 2025 = estimasi.
+export const TRENDS = {
+  source: "BPS; 2025 estimasi",
+  years: [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025],
+  pengangguran: [5.61, 5.5, 5.34, 5.28, 7.07, 6.49, 5.86, 5.32, 4.91, 4.8],
+  kemiskinan: [10.7, 10.64, 9.66, 9.22, 10.19, 9.71, 9.57, 9.36, 9.03, 8.47],
+  estimateYears: [2025],
+};
+
+// Ekspor dan impor barang, 2020–2025 (miliar dolar AS). 2025 = estimasi.
+export const TRADE = {
+  source: "BPS · Bank Indonesia; 2025 estimasi",
+  years: [2020, 2021, 2022, 2023, 2024, 2025],
+  ekspor: [163.2, 231.6, 291.9, 258.8, 264.7, 270.0],
+  impor: [141.6, 196.2, 237.4, 221.9, 233.7, 240.0],
   estimateYears: [2025],
 };
 
@@ -117,34 +155,28 @@ export const ISLANDS = {
   ],
 };
 
-// 16 provinsi — angka estimasi, dibulatkan. Sumber: BPS.
-export const PROVINCES = {
-  source: "BPS, estimasi",
-  columns: [
-    { key: "name", label: "Provinsi" },
-    { key: "pop", label: "Penduduk (jt)" },
-    { key: "pdrb", label: "PDRB (Rp T)" },
-    { key: "unemp", label: "Pengangguran (%)" },
-    { key: "poverty", label: "Kemiskinan (%)" },
-  ],
+// Struktur umur penduduk dan urbanisasi, 2024 (%). Sumber: BPS.
+export const AGE = {
+  source: "BPS, 2024",
+  unit: "% penduduk",
   rows: [
-    { name: "Jawa Barat", capital: "Bandung", pop: 49.9, pdrb: 2900, unemp: 6.5, poverty: 7.0 },
-    { name: "Jawa Timur", capital: "Surabaya", pop: 41.8, pdrb: 3400, unemp: 4.8, poverty: 10.3 },
-    { name: "Jawa Tengah", capital: "Semarang", pop: 37.9, pdrb: 1800, unemp: 5.4, poverty: 10.5 },
-    { name: "Sumatera Utara", capital: "Medan", pop: 15.6, pdrb: 1000, unemp: 5.8, poverty: 8.0 },
-    { name: "Banten", capital: "Serang", pop: 12.5, pdrb: 900, unemp: 6.7, poverty: 5.7 },
-    { name: "DKI Jakarta", capital: "Jakarta", pop: 10.6, pdrb: 3600, unemp: 6.2, poverty: 4.1 },
-    { name: "Sulawesi Selatan", capital: "Makassar", pop: 9.4, pdrb: 700, unemp: 4.6, poverty: 8.3 },
-    { name: "Lampung", capital: "Bandar Lampung", pop: 9.4, pdrb: 500, unemp: 4.3, poverty: 11.4 },
-    { name: "Sumatera Selatan", capital: "Palembang", pop: 9.0, pdrb: 700, unemp: 4.7, poverty: 11.0 },
-    { name: "Riau", capital: "Pekanbaru", pop: 6.8, pdrb: 900, unemp: 4.0, poverty: 6.7 },
-    { name: "Kalimantan Barat", capital: "Pontianak", pop: 6.0, pdrb: 300, unemp: 4.5, poverty: 9.0 },
-    { name: "Nusa Tenggara Timur", capital: "Kupang", pop: 5.7, pdrb: 100, unemp: 3.5, poverty: 19.0 },
-    { name: "Aceh", capital: "Banda Aceh", pop: 5.6, pdrb: 200, unemp: 5.6, poverty: 14.5 },
-    { name: "Bali", capital: "Denpasar", pop: 4.4, pdrb: 300, unemp: 3.0, poverty: 5.2 },
-    { name: "Kalimantan Timur", capital: "Samarinda", pop: 3.9, pdrb: 900, unemp: 4.9, poverty: 6.0 },
-    { name: "Sulawesi Utara", capital: "Manado", pop: 2.8, pdrb: 200, unemp: 6.2, poverty: 7.5 },
+    { name: "0–14 tahun (anak)", pop: 24.0 },
+    { name: "15–64 tahun (produktif)", pop: 69.0 },
+    { name: "65+ tahun (lansia)", pop: 7.0 },
   ],
+  urban: 58.6,
+  urbanNote: "58,6% penduduk tinggal di perkotaan (2024)",
+};
+
+// Fakta moneter dari Bank Indonesia.
+export const MONETARY = {
+  source: "Bank Indonesia",
+  reserves: "US$155,7 M",
+  reservesNote: "Cadangan devisa, Des 2024",
+  rupiah: "Rp16.160",
+  rupiahNote: "per dolar AS, akhir 2024",
+  policyRate: "6,00%",
+  policyRateNote: "BI-Rate, Des 2024",
 };
 
 export const NATIONAL = {
@@ -152,6 +184,8 @@ export const NATIONAL = {
   pdb: 22139,
   unemp: 4.91,
   poverty: 8.47,
+  ipm: 75.0,
+  exports: 264.7,
 };
 
 // Catatan umum yang dipakai di beberapa tempat di halaman.
